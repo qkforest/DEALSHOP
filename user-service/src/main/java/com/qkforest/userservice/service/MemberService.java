@@ -6,6 +6,7 @@ import com.qkforest.userservice.dto.request.SignUpRequest;
 import com.qkforest.userservice.exception.BusinessLogicException;
 import com.qkforest.userservice.exception.ExceptionCode;
 import com.qkforest.userservice.repositroy.EmailVerificationCodeRepository;
+import com.qkforest.userservice.repositroy.MemberRepository;
 import com.qkforest.userservice.util.AES256;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ import java.util.Random;
 public class MemberService {
 
     private final EmailService mailService;
-    private final com.qkforest.userservice.repositroy.MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
     private final EmailVerificationCodeRepository emailVerificationCodeRepository;
     private final AES256 aes256;
     private final PasswordEncoder passwordEncoder;

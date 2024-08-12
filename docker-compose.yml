@@ -11,6 +11,18 @@ services:
       TZ: Asia/Seoul
     ports:
       - 3308:3306
+
+  product-mysqldb:
+    container_name: product_mysqldb
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: product
+      TZ: Asia/Seoul
+    ports:
+      - 3309:3306
+
   user-redis:
     container_name: user_redis
     image: redis
