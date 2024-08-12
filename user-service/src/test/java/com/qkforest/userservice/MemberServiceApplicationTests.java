@@ -1,10 +1,10 @@
-package com.qkforest.dealshop;
+package com.qkforest.userservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DealshopApplicationTests {
+class MemberServiceApplicationTests {
 
     @Test
     void contextLoads() {
