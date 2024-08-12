@@ -1,2 +1,3 @@
 rootProject.name = 'DEALSHOP'
 include 'user-service'
+include 'product-service'
