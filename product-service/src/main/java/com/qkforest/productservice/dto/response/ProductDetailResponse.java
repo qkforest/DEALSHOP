@@ -23,7 +23,7 @@ public class ProductDetailResponse {
 
     public static ProductDetailResponse from(Product product) {
         return ProductDetailResponse.builder()
-                .product_id(product.getProduct_id())
+                .product_id(product.getId())
                 .name(product.getName())
                 .price(product.getPrice())
                 .description(product.getDescription())

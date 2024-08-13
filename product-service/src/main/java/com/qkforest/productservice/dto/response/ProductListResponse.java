@@ -23,7 +23,7 @@ public class ProductListResponse {
 
     public static ProductListResponse from(Product product) {
         return ProductListResponse.builder()
-                .product_id(product.getProduct_id())
+                .product_id(product.getId())
                 .name(product.getName())
                 .price(product.getPrice())
                 .description(product.getDescription())
