@@ -30,4 +30,10 @@ public class ProductService {
         Optional<Product> product = productRepository.findById(productId);
         return product.map(ProductDetailResponse::from).orElseThrow(() -> new RuntimeException("Product not found"));
     }
+
+    public Product findProductByIdOrElseThrow(Long productId) {
+        return productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+    }
+
 }
