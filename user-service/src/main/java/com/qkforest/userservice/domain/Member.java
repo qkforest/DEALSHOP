@@ -3,15 +3,16 @@ package com.qkforest.userservice.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
 @Entity
-@Table(name = "member")
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
+@Table(name = "member")
 public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id")
     private Long id;
 
     @Column(nullable = false, unique = true, length = 150)
@@ -29,13 +30,8 @@ public class Member {
     @Column(nullable = false)
     private String address;
 
-    @Builder
-    public Member(String email, String password, String name, String phoneNumber, String address) {
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-    }
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private RoleEnum role;
 
 }
