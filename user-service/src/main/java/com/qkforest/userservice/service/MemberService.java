@@ -2,7 +2,9 @@ package com.qkforest.userservice.service;
 
 import com.qkforest.userservice.domain.EmailVerificationCode;
 import com.qkforest.userservice.domain.Member;
+import com.qkforest.userservice.domain.RoleEnum;
 import com.qkforest.userservice.dto.request.SignUpRequest;
+import com.qkforest.userservice.dto.response.MemberDetailResponse;
 import com.qkforest.userservice.exception.BusinessLogicException;
 import com.qkforest.userservice.exception.ExceptionCode;
 import com.qkforest.userservice.repositroy.EmailVerificationCodeRepository;
@@ -50,6 +52,7 @@ public class MemberService {
                 .password(passwordEncoder.encode(signUpRequest.getPassword()))
                 .phoneNumber(aes256.encrypt(signUpRequest.getPhoneNumber()))
                 .address(aes256.encrypt(signUpRequest.getAddress()))
+                .role(RoleEnum.USER)
                 .build());
     }
 
@@ -87,5 +90,11 @@ public class MemberService {
             log.debug("MemberService.createEmailVerificationCode() exception occur");
             throw new BusinessLogicException(ExceptionCode.NO_SUCH_ALGORITHM);
         }
+    }
+
+    public MemberDetailResponse getMemberDetails(Long memberId) {
+        Optional<Member> member = memberRepository.findById(memberId);
+        return member.map(MemberDetailResponse::from).orElseThrow(() -> new RuntimeException("member not found"));
+
     }
 }

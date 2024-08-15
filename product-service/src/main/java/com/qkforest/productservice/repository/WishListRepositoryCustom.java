@@ -1,7 +1,6 @@
 package com.qkforest.productservice.repository;
 
 import com.qkforest.productservice.dto.response.WishListResponse;
-import com.qkforest.productservice.vo.WishListResponseVo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
