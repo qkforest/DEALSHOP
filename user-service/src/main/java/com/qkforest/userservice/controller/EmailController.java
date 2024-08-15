@@ -15,13 +15,13 @@ import jakarta.validation.Valid;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/email")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class EmailController {
 
     private final MemberService memberService;
 
-    @PostMapping("/verification-requests")
+    @PostMapping("/email/verification-requests")
     public ResponseEntity<?> sendMessage(@RequestParam("email") @Valid @Email String email) {
         memberService.sendVerificationCodeEmail(email);
         return new ResponseEntity<>(HttpStatus.OK);
