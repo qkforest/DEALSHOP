@@ -1,7 +1,7 @@
 package com.qkforest.userservice.security.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qkforest.userservice.domain.Member;
+import com.qkforest.userservice.domain.User;
 import com.qkforest.userservice.dto.request.LoginRequest;
 import com.qkforest.userservice.security.PrincipalDetails;
 import com.qkforest.userservice.util.CustomResponseUtil;
@@ -72,17 +72,17 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         Instant now = Instant.now();
 
-        Member member = principalDetails.getMember();
+        User user = principalDetails.getUser();
         String token = Jwts.builder()
                 .setSubject(principalDetails.getUsername())
-                .claim("id", member.getEmail())
-                .claim("role", member.getRole().toString())
+                .claim("id", user.getEmail())
+                .claim("role", user.getRole().toString())
                 .setExpiration(Date.from(now.plusMillis(Long.parseLong(environment.getProperty("token.expiration_time")))))
                 .setIssuedAt(Date.from(now))
                 .signWith(secretKey)
                 .compact();
 
         res.addHeader("token", token);
-        res.addHeader("id", String.valueOf(member.getId()));
+        res.addHeader("id", String.valueOf(user.getId()));
     }
 }
