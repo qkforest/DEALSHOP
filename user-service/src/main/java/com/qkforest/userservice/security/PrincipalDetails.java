@@ -1,6 +1,6 @@
 package com.qkforest.userservice.security;
 
-import com.qkforest.userservice.domain.Member;
+import com.qkforest.userservice.domain.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,10 +13,10 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class PrincipalDetails implements UserDetails {
 
-    private Member member;
+    private User user;
 
-    public PrincipalDetails(Member member) {
-        this.member = member;
+    public PrincipalDetails(User user) {
+        this.user = user;
     }
 
 
@@ -27,7 +27,7 @@ public class PrincipalDetails implements UserDetails {
         collect.add(new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                return member.getRole().toString();
+                return user.getRole().toString();
             }
         });
         return collect;
@@ -35,12 +35,12 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return member.getPassword();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return member.getEmail();
+        return user.getEmail();
     }
 
     @Override

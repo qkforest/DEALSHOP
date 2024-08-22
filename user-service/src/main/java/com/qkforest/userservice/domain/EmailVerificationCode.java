@@ -19,6 +19,5 @@ public class EmailVerificationCode {
     @Id
     @Indexed
     private String emailVerificationCode;
-
     private String email;
 }

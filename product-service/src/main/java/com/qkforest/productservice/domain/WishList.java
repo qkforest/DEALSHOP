@@ -1,13 +1,14 @@
 package com.qkforest.productservice.domain;
 
+import com.qkforest.commonmodule.domain.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
 @Entity
-@Table(name = "wish_list")
+@Table(name = "wish_lists")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class WishList {
+public class WishList extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "wish_list_id")

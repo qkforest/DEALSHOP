@@ -1,12 +1,12 @@
 package com.qkforest.productservice.service;
 
+import com.qkforest.commonmodule.exception.BusinessLogicException;
+import com.qkforest.commonmodule.exception.ExceptionCode;
 import com.qkforest.productservice.domain.Product;
 import com.qkforest.productservice.domain.WishList;
 import com.qkforest.productservice.dto.request.WishListAddRequest;
 import com.qkforest.productservice.dto.response.WishListResponse;
 import com.qkforest.productservice.dto.response.WishListUpdateResponse;
-import com.qkforest.productservice.exception.BusinessLogicException;
-import com.qkforest.productservice.exception.ExceptionCode;
 import com.qkforest.productservice.repository.WishListRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
