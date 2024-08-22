@@ -1,6 +1,6 @@
 package com.qkforest.userservice.controller;
 
-import com.qkforest.userservice.service.MemberService;
+import com.qkforest.userservice.service.UserService;
 import jakarta.validation.constraints.Email;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,11 +19,11 @@ import jakarta.validation.Valid;
 @RequiredArgsConstructor
 public class EmailController {
 
-    private final MemberService memberService;
+    private final UserService userService;
 
     @PostMapping("/email/verification-requests")
     public ResponseEntity<?> sendMessage(@RequestParam("email") @Valid @Email String email) {
-        memberService.sendVerificationCodeEmail(email);
+        userService.sendVerificationCodeEmail(email);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -1,3 +1,7 @@
 rootProject.name = 'DEALSHOP'
+include 'common-module'
 include 'user-service'
 include 'product-service'
+include 'order-service'
+include 'apigateway-service'
+include 'discovery-service'
