@@ -34,18 +34,34 @@ services:
     ports:
       - 3310:3306
 
+  payment-mysqldb:
+    container_name: payment_mysqldb
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: dealshop_payment
+      TZ: Asia/Seoul
+    ports:
+      - 3311:3306
+
   user-redis:
     container_name: user_redis
     image: redis
     ports:
       - "6380:6379"
 
+  stock-redis:
+    container_name: stock_redis
+    image: redis
+    ports:
+      - "6381:6379"
+
   zookeeper:
     image: wurstmeister/zookeeper
     container_name: zookeeper
     ports:
       - "2181:2181"
-
 
   kafka:
     image: wurstmeister/kafka

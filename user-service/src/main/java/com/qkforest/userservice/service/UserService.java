@@ -6,7 +6,10 @@ import com.qkforest.userservice.domain.EmailVerificationCode;
 import com.qkforest.userservice.domain.User;
 import com.qkforest.userservice.domain.RoleEnum;
 import com.qkforest.userservice.dto.request.SignUpRequest;
-import com.qkforest.userservice.dto.response.UserDetailResponse;
+import com.qkforest.userservice.dto.request.UpdateUserInfoRequest;
+import com.qkforest.userservice.dto.request.UpdatePasswordRequest;
+import com.qkforest.userservice.dto.response.UpdateUserInfoResponse;
+import com.qkforest.userservice.dto.response.UserInfoResponse;
 import com.qkforest.userservice.repositroy.EmailVerificationCodeRepository;
 import com.qkforest.userservice.repositroy.UserRepository;
 import com.qkforest.userservice.util.AES256;
@@ -61,6 +64,7 @@ public class UserService {
         validateDuplicateEmail(to);
         String title = "DEALSHOP 이메일 인증 번호";
         String authCode = this.createEmailVerificationCode();
+        log.info(authCode);
         emailVerificationCodeRepository.save(EmailVerificationCode.builder()
                 .emailVerificationCode(authCode)
                 .email(to)
@@ -87,14 +91,30 @@ public class UserService {
             }
             return builder.toString();
         } catch (NoSuchAlgorithmException e) {
-            log.debug("UserService.createEmailVerificationCode() exception occur");
             throw new BusinessLogicException(ExceptionCode.NO_SUCH_ALGORITHM);
         }
     }
 
-    public UserDetailResponse getUserDetails(Long userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("잘못된 사용자 아이디 또는 비밀번호입니다."));;
-        return UserDetailResponse.from(user, aes256);
+    public User findUserByIdOrElseThrow(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.NO_SUCH_USER));
+    }
 
+    public UserInfoResponse getUserInfos(Long userId) {
+        User user = findUserByIdOrElseThrow(userId);
+        return UserInfoResponse.from(user, aes256);
+    }
+
+    @Transactional
+    public UpdateUserInfoResponse updateUserInfos(Long userId, UpdateUserInfoRequest updateUserInfoRequest) {
+        User user = findUserByIdOrElseThrow(userId);
+        user.updateUserInfo(aes256.encrypt(updateUserInfoRequest.getPhoneNumber()), aes256.encrypt(updateUserInfoRequest.getAddress()));
+        return new UpdateUserInfoResponse(user, aes256);
+    }
+
+    @Transactional
+    public void updateUserPassword(Long userId, UpdatePasswordRequest updatePasswordRequest) {
+        User user = findUserByIdOrElseThrow(userId);
+        user.updatePassword(passwordEncoder.encode(updatePasswordRequest.getPassword()));
     }
 }

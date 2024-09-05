@@ -1,5 +1,8 @@
 package com.qkforest.productservice.service.kafka;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.qkforest.commonmodule.dto.product.request.OrderSaveRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -8,14 +11,20 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class KafkaProducer {
 
-    private final KafkaTemplate<String, String> kafkaFailUpdateStockTemplate;
+    private final KafkaTemplate<String, String> kafkaProducerTemplate ;
 
-    public KafkaProducer(KafkaTemplate<String, String> kafkaFailUpdateStockTemplate) {
-        this.kafkaFailUpdateStockTemplate = kafkaFailUpdateStockTemplate;
+    public KafkaProducer(KafkaTemplate<String, String> kafkaProducerTemplate) {
+        this.kafkaProducerTemplate = kafkaProducerTemplate;
     }
 
-    public void sendFailUpdateStockRequest(String topic, String message) {
-        kafkaFailUpdateStockTemplate.send(topic, message);
-        log.info("Kafka Producer sent data from the product-service" + message);
+    public void sendMessage(String topic, OrderSaveRequest orderSaveRequest) {
+        ObjectMapper mapper = new ObjectMapper();
+        String message = "";
+        try {
+            message = mapper.writeValueAsString(orderSaveRequest);
+            kafkaProducerTemplate.send(topic, message);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 }

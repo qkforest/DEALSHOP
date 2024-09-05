@@ -20,8 +20,6 @@ public class EmailService {
         try {
             javaMailSender.send(email);
         } catch (RuntimeException e) {
-            log.debug("MailService.sendEmail exception occur to: {}, " +
-                    "title: {}, text: {}", to, title, text);
             throw new BusinessLogicException(ExceptionCode.UNABLE_TO_SEND_EMAIL);
         }
     }
@@ -31,7 +29,6 @@ public class EmailService {
         message.setTo(to);
         message.setSubject(title);
         message.setText(text);
-
         return message;
     }
 }

@@ -1,7 +1,6 @@
 package com.qkforest.orderservice.config.kafka;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,9 +25,8 @@ public class KafkaProducerConfig {
 
         return new DefaultKafkaProducerFactory<>(properties);
     }
-
     @Bean
-    public KafkaTemplate<String, String> kafkaUpdateStockTemplate() {
+    public KafkaTemplate<String, String> kafkaPaymentTemplate() {
         return new KafkaTemplate<>(ProducerFactory());
     }
 }

@@ -1,8 +1,11 @@
 package com.qkforest.orderservice.dto.request;
 
-import com.qkforest.commonmodule.dto.UpdateProductStockRequest;
+import com.qkforest.commonmodule.dto.product.request.OrderProductRequest;
 import lombok.AllArgsConstructor;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 
@@ -11,5 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderSaveRequest  {
-    private List<UpdateProductStockRequest> orderProductRequestList;
+
+    private List<OrderProductRequest> orderProductRequestList;
 }

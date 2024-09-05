@@ -61,7 +61,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain,
+    protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse response, FilterChain chain,
                                             Authentication auth) {
 
         PrincipalDetails principalDetails = (PrincipalDetails) auth.getPrincipal();
@@ -82,7 +82,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .signWith(secretKey)
                 .compact();
 
-        res.addHeader("token", token);
-        res.addHeader("id", String.valueOf(user.getId()));
+        response.addHeader("token", token);
+        response.addHeader("id", String.valueOf(user.getId()));
+
+        CustomResponseUtil.success(response);
     }
 }

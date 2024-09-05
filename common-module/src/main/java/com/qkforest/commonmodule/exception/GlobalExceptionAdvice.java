@@ -13,7 +13,6 @@ public class GlobalExceptionAdvice {
 
     @ExceptionHandler({BusinessLogicException.class})
     public ResponseEntity<?> handleBusinessLogicException(BusinessLogicException e) {
-        log.error(e.getMessage());
-        return new ResponseEntity<>(new ResponseDto<>(-1, e.getMessage(), null), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ResponseDto<>(e.getExceptionCode().getStatus(), e.getMessage(), null), HttpStatus.BAD_REQUEST);
     }
 }

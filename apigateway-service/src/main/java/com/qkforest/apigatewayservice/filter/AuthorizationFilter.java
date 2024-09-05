@@ -42,14 +42,14 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
                 ServerHttpRequest request = exchange.getRequest();
 
                 if (!request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
-                    return onError(exchange, "No authorization header", HttpStatus.UNAUTHORIZED);
+                    return onError(exchange, "authorization 헤더가 비어 있습니다.", HttpStatus.UNAUTHORIZED);
                 }
 
                 String authorizationHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
                 String jwt = authorizationHeader.replace("Bearer", "");
 
                 if (!isJwtValid(jwt)) {
-                    return onError(exchange, "JWT token is not valid", HttpStatus.UNAUTHORIZED);
+                    return onError(exchange, "유효하지 않은 JWT 토큰입니다.", HttpStatus.UNAUTHORIZED);
                 }
 
                 return chain.filter(exchange);
@@ -61,7 +61,7 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
             response.setStatusCode(httpStatus);
             log.error(err);
 
-            byte[] bytes = "The requested token is invalid.".getBytes(StandardCharsets.UTF_8);
+            byte[] bytes = err.getBytes(StandardCharsets.UTF_8);
             DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);
             return response.writeWith(Flux.just(buffer));
         }
