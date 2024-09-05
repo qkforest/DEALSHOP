@@ -1,7 +1,7 @@
 package com.qkforest.userservice.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qkforest.userservice.dto.response.ResponseDto;
+import com.qkforest.commonmodule.dto.ResponseDto;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,12 +9,11 @@ import org.springframework.http.HttpStatus;
 
 public class CustomResponseUtil {
     private static final Logger log = LoggerFactory.getLogger(CustomResponseUtil.class);
-    public static final String ISLOGIN = "ISLOGIN";
 
-    public static void success(HttpServletResponse response, Object dto) {
+    public static void success(HttpServletResponse response) {
         try {
             ObjectMapper om = new ObjectMapper();
-            ResponseDto<?> responseDto = new ResponseDto<>(1, "로그인 성공", dto);
+            ResponseDto<?> responseDto = new ResponseDto<>(200, "로그인 성공", null);
             String responseBody = om.writeValueAsString(responseDto);
             response.setContentType("application/json; charset=utf-8");
             response.setStatus(200);
@@ -24,10 +23,10 @@ public class CustomResponseUtil {
         }
     }
 
-    public static void fail(HttpServletResponse response, String msg, HttpStatus httpStatus) {
+    public static void fail(HttpServletResponse response, String message, HttpStatus httpStatus) {
         try {
             ObjectMapper om = new ObjectMapper();
-            ResponseDto<String> responseDto = new ResponseDto<>(-1, msg, null);
+            ResponseDto<String> responseDto = new ResponseDto<>(401, message, null);
             String responseBody = om.writeValueAsString(responseDto);
             response.setContentType("application/json; charset=utf-8");
             response.setStatus(httpStatus.value());

@@ -26,7 +26,7 @@ public class User extends BaseEntity {
     @Column(nullable = false, length = 150)
     private String name;
 
-    @Column(nullable = false, length = 130)
+    @Column(name = "phone_number", nullable = false, length = 130)
     private String phoneNumber;
 
     @Column(nullable = false)
@@ -35,5 +35,15 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
+
+
+    public void updateUserInfo(String phoneNumber, String address) {
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
+    public void updatePassword(String password) {
+        this.password = password;
+    }
 
 }

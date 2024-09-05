@@ -6,7 +6,6 @@ import com.qkforest.productservice.domain.Product;
 import com.qkforest.productservice.domain.WishList;
 import com.qkforest.productservice.dto.request.WishListAddRequest;
 import com.qkforest.productservice.dto.response.WishListResponse;
-import com.qkforest.productservice.dto.response.WishListUpdateResponse;
 import com.qkforest.productservice.repository.WishListRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -42,17 +41,17 @@ public class WishListService {
     }
 
     @Transactional
-    public WishListUpdateResponse updateQuantity(Long userId, Long wishListId, int quantity) {
+    public WishListResponse updateQuantity(Long userId, Long wishListId, int quantity) {
         WishList wishList = wishListRepository.findByIdAndUserId(wishListId, userId)
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.INVALID_UPDATE_REQUEST));
         wishList.updateQuantity(quantity);
-        return new WishListUpdateResponse(wishList.getId(), wishList.getProduct().getId(), quantity);
+        return new WishListResponse(wishList.getId(), wishList.getProduct().getId(), quantity);
     }
 
     @Transactional
     public void deleteWishList(Long userId, Long wishListId) {
         WishList wishlist = wishListRepository.findByIdAndUserId(wishListId, userId)
-                .orElseThrow(() ->new BusinessLogicException(ExceptionCode.NOT_FOUND_WISHLIST));
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.NO_SUCH_WISHLIST));
         wishListRepository.delete(wishlist);
     }
 

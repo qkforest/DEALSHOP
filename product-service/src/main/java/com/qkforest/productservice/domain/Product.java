@@ -21,7 +21,7 @@ public class Product extends BaseEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String title;
 
     @Column(nullable = false)
     private Long price;
@@ -30,19 +30,23 @@ public class Product extends BaseEntity {
     private String description;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private ProductStatus productStatus;
+    private int stock;
 
     @Column(nullable = false)
     private LocalDateTime activation_time;
 
-    public static Product from(ProductSaveRequest product, ProductStatus productStatus, LocalDateTime activationTime) {
+
+    public static Product from(ProductSaveRequest request, LocalDateTime activationTime) {
         return Product.builder()
-                .name(product.getProductName())
-                .price(product.getPrice())
-                .description(product.getDescription())
-                .productStatus(productStatus)
+                .title(request.getTitle())
+                .price(request.getPrice())
+                .description(request.getDescription())
                 .activation_time(activationTime)
+                .stock(request.getStock())
                 .build();
+    }
+
+    public void updateStock(int quantity) {
+        this.stock = quantity;
     }
 }

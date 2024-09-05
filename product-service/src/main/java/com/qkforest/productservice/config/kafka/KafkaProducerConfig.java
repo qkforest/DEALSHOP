@@ -28,7 +28,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, String> kafkaFailUpdateStockTemplate() {
+    public KafkaTemplate<String, String> kafkaProducerTemplate() {
         return new KafkaTemplate<>(ProducerFactory());
     }
 }
