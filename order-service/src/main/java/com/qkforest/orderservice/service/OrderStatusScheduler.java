@@ -12,7 +12,7 @@ public class OrderStatusScheduler {
         this.orderService = orderService;
     }
 
-    @Scheduled(cron = "0 50 20 * * ?")
+    @Scheduled(cron = "0 0 4 * * ?")
     public void updateOrderStatus() {
         orderService.updateOrderStatusToInTransit();
         orderService.updateOrderStatusToShipped();
