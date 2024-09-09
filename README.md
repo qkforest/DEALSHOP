@@ -44,6 +44,8 @@
 ### 💻 **아키텍처 구성도**
 
 ## 📖 **ERD**
+![erd](https://github.com/user-attachments/assets/f14ff49c-4600-4819-9a4c-f3c1441dc314)
+
 ## 📑 **API 문서** 
 
 ## ✨ **주요 기능**
@@ -60,6 +62,7 @@
 ## 📊 **성능 최적화 및 트러블 슈팅** 
 
 ### Redis 캐싱를 활용한 상품 주문 성능 개선
+<img src="https://github.com/user-attachments/assets/a86b0ddb-250a-4d50-bde2-2084273096f0"  width="500" />
 
   - 쓰기 전략: Write-through -> Write-back
   - Lua Script 적용
