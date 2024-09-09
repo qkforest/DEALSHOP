@@ -43,6 +43,9 @@
 
 ### 💻 **아키텍처 구성도**
 
+![diagram](https://github.com/user-attachments/assets/cbbfc2a6-fc05-48eb-a79a-3bf99f2f30e8)
+
+
 ## 📖 **ERD**
 ![erd](https://github.com/user-attachments/assets/f14ff49c-4600-4819-9a4c-f3c1441dc314)
 
