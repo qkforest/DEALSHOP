@@ -75,7 +75,7 @@ ProductService {
                         products.getTitle(),
                         products.getPrice(),
                         products.getDescription(),
-                        products.getActivation_time())
+                        products.getActivationTime())
                 ).toList();
     }
 
@@ -90,7 +90,7 @@ ProductService {
 
     private Product checkAvailable(Long productId, int quantity) {
         Product product = findProductByIdOrElseThrow(productId);
-        if(product.getActivation_time().isBefore(LocalDateTime.now())) {
+        if(product.getActivationTime().isBefore(LocalDateTime.now())) {
             Integer stock = stockRedisService.getProductStock(productId);
             if (stock == null) {
                 stockRedisService.saveProductStock(productId, product.getStock());
@@ -138,7 +138,7 @@ ProductService {
                         products.getPrice(),
                         productIdsAndQuantities.get(products.getId()),
                         products.getDescription(),
-                        products.getActivation_time())
+                        products.getActivationTime())
                 ).toList();
     }
 

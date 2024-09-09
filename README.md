@@ -1,9 +1,9 @@
-<span style="margin-left: 10px;"><h1><img src="https://github.com/user-attachments/assets/da884c29-1ce2-45d1-9a5d-32a94a924d5d" width="40" height="auto" align="left" />DEALSHOP</h1></span>
+<span style="margin-left: 10px;"><h1><img src="https://github.com/user-attachments/assets/da884c29-1ce2-45d1-9a5d-32a94a924d5d" width="40" height="auto"/>DEALSHOP</h1></span>
 ## **📝 프로젝트 소개** 
-- 상품을 판매하고 구매할 수 있는 기능을 제공하는 E-commerce 플랫폼입니다. 
-- 판매자는 판매 오픈 시간을 설정할 수 있으며, 구매자는 판매 기간 동안 **한정 수량 상품을 선착순으로 구매**할 수 있습니다.
-- 특정 시간에 주문 요청이 몰리는 상황을 대비하여 **동시성 제어** 로직을 구현하였습니다.
-- 마이크로서비스아키텍처(**MSA**)를 기반으로 서비스를 분리하여 유연하고 확장 가능한 시스템 구조를 구축하였습니다. <br/>
+- 상품을 판매하고 구매할 수 있는 기능을 제공하는 E-commerce 플랫폼 
+- 판매자는 판매 오픈 시간을 설정할 수 있고, 구매자는 판매 기간 동안 **한정 수량 상품을 선착순으로 구매** 가능
+- 특정 시간에 주문이 몰리는 상황을 대비하여 **동시성 제어** 로직 구현
+- 마이크로서비스아키텍처(**MSA**)를 기반으로 서비스를 분리하여 유연하고 확장 가능한 시스템 구조 구축
 
 ### 📆 **개발 기간 및 인원**
 - 기간: 24.08.07 - 24.09.03(1개월)
@@ -44,7 +44,6 @@
 ### 💻 **아키텍처 구성도**
 
 ## 📖 **ERD**
-![img.png](img.png)
 ## 📑 **API 문서** 
 
 ## ✨ **주요 기능**
@@ -62,13 +61,13 @@
 
 ### Redis 캐싱를 활용한 상품 주문 성능 개선
 
- ![img_5.png](img_5.png)
   - 쓰기 전략: Write-through -> Write-back
   - Lua Script 적용
   - TPS: **35.56/sec** -> **193.80/sec**
 
 ### 실시간 재고 동시성 이슈 해결
-
+- Pessimistic Lock(비관적 락)
+- Redisson 분산락
 
 ### Kafka에서 하나의 토픽에 대해 복수 컨슈머 설정
 - 문제 상황: **하나의 주문 취소 토픽**을 구독하는 상품 서비스와 결제 서비스 중 한 서비스만 메시지를 처리하는 문제 발생

@@ -19,7 +19,7 @@ public class Order extends BaseEntity {
     @Column(name = "order_status", nullable = false)
     private OrderStatus orderStatus;
 
-    @Column(nullable = false)
+    @Column(name = "total_price",nullable = false)
     private Long totalPrice;
 
     @Column(nullable = false)

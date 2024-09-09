@@ -22,11 +22,13 @@ public class OrderDetail extends BaseEntity {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @Column(nullable = false)
+    @Column(name = "product_id", nullable = false)
     private Long productId;
 
+    @Column(nullable = false)
     private int quantity;
 
+    @Column(name = "unit_price", nullable = false)
     private Long unitPrice;
 
     @Builder

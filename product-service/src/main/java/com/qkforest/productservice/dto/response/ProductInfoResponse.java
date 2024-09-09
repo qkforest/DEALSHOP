@@ -26,7 +26,7 @@ public class ProductInfoResponse {
                 .price(product.getPrice())
                 .description(product.getDescription())
                 .quantity(product.getStock())
-                .activation_time(product.getActivation_time())
+                .activation_time(product.getActivationTime())
                 .build();
     }
 }

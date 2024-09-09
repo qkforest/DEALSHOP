@@ -34,7 +34,7 @@ public class ProductServiceTest {
         Product product = productRepository.saveAndFlush(Product.builder()
                 .title("상품1")
                 .price(10000L)
-                .activation_time(LocalDateTime.now())
+                .activationTime(LocalDateTime.now())
                 .description("")
                 .stock(500)
                 .build());

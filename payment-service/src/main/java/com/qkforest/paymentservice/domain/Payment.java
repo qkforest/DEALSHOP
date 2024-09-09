@@ -20,7 +20,7 @@ public class Payment extends BaseEntity {
     @Column(name = "payment_amount", nullable = false)
     private Long paymentAmount;
 
-    @Column
+    @Column(name = "payment_status", nullable = false)
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
 

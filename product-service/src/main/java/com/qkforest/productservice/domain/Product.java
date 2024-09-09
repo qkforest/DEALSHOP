@@ -32,8 +32,8 @@ public class Product extends BaseEntity {
     @Column(nullable = false)
     private int stock;
 
-    @Column(nullable = false)
-    private LocalDateTime activation_time;
+    @Column(name = "activation_time", nullable = false)
+    private LocalDateTime activationTime;
 
 
     public static Product from(ProductSaveRequest request, LocalDateTime activationTime) {
@@ -41,7 +41,7 @@ public class Product extends BaseEntity {
                 .title(request.getTitle())
                 .price(request.getPrice())
                 .description(request.getDescription())
-                .activation_time(activationTime)
+                .activationTime(activationTime)
                 .stock(request.getStock())
                 .build();
     }
