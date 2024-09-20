@@ -64,7 +64,7 @@
 - Gmail SMTP를 활용한 이메일 인증 기능 개발
 ## 📊 **성능 최적화 및 트러블 슈팅** 
 
-### Redis 캐싱를 활용한 상품 주문 성능 개선
+### Redis 캐싱를 활용한 상품 주문 성능 개선 ([🔗click](https://velog.io/@qkforest/부하-테스트-분산락))
 <img src="https://github.com/user-attachments/assets/a86b0ddb-250a-4d50-bde2-2084273096f0"  width="500" />
 
   - 쓰기 전략: Write-through -> Write-back
