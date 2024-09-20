@@ -112,7 +112,7 @@ public class StockRedisService {
     }
 
     @Transactional
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 600000)
     public void syncDB() {
         Set<String> keys = redisTemplate.keys(REDIS_PREFIX+"*");
         if (!keys.isEmpty()) {
